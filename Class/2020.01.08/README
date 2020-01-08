@@ -83,3 +83,16 @@ for(int i=0; i<n; i++) delete[] a[i];
 delete[] p;
 delete[] a;
 -----------------------------------------
+
+=====std::bad_alloc handling=====
+int *a;
+int n;
+cin>>n;
+try{
+  a = new int[n]; //without "(nothrow)" so that new throws std::bad_alloc if no memory aviable
+}catch(const std::bad_alloc& e){
+  cerr << "Allocation failed: " << e.what() << endl;
+  return 0;
+}
+//for simplicity you can say: catch(...) instead of catch(const std::bad_alloc& e)
+-----------------------------------------
